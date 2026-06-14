@@ -1,6 +1,8 @@
 import { NotesResponse } from "@/types/api";
 import { api } from "./api";
 import { Note } from "@/types/note";
+import { User } from "@/types/user";
+import { LoginResponse } from "@/types/login";
 
 export const fetchNotes = async (
   page = 1,
@@ -35,5 +37,22 @@ export const createNote = async (note: {
 
 export const deleteNote = async (id: string): Promise<Note> => {
   const res = await api.delete<Note>(`/notes/${id}`, {});
+  return res.data;
+};
+
+export const register = async (userData: {
+  email: string;
+  username: string;
+  password?: string;
+}) => {
+  const res = await api.post<User>(`/auth/register`, userData);
+  return res.data;
+};
+
+export const login = async (credentials: {
+  email: string;
+  password?: string;
+}) => {
+  const res = await api.post<LoginResponse>(`auth/login`, credentials);
   return res.data;
 };

@@ -1,3 +1,5 @@
+"use client";
+
 import css from "./Header.module.css";
 import Link from "next/link";
 import { AuthNavigation } from "../AuthNavigation/AuthNavigation";
@@ -15,6 +17,9 @@ export default function Header() {
           </li>
           <li>
             <Link href="/notes/filter/all">Notes</Link>
+          </li>
+          <li>
+            <Link href="/sign-up">Register</Link>
           </li>
           <AuthNavigation />
         </ul>
