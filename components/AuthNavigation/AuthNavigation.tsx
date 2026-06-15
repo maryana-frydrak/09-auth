@@ -1,8 +1,18 @@
+import { useAuth } from "@/lib/store/authStore";
 import css from "./AuthNavigation.module.css";
 import Link from "next/link";
 
 export const AuthNavigation = () => {
-  return (
+  const { isAuth, user } = useAuth();
+
+  const handleLogout = () => {};
+
+  return isAuth ? (
+    <>
+      <>{user?.email}</>
+      <button onClick={handleLogout}>LogOut</button>
+    </>
+  ) : (
     <>
       <li className={css.navigationItem}>
         <Link href="/profile" prefetch={false} className={css.navigationLink}>

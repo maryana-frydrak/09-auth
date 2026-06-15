@@ -1,8 +1,9 @@
 import { NotesResponse } from "@/types/api";
-import { api } from "./api";
+import { nextServer } from "./api";
 import { Note } from "@/types/note";
 import { User } from "@/types/user";
 import { LoginResponse } from "@/types/login";
+import { SessionResponse } from "@/types/session";
 
 export const fetchNotes = async (
   page = 1,
@@ -10,7 +11,7 @@ export const fetchNotes = async (
   tag: string | null = null,
   search: string = "",
 ) => {
-  const res = await api.get<NotesResponse>(`/notes`, {
+  const res = await nextServer.get<NotesResponse>(`/notes`, {
     params: {
       page,
       perPage,
@@ -22,7 +23,7 @@ export const fetchNotes = async (
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
-  const res = await api.get<Note>(`/notes/${id}`, {});
+  const res = await nextServer.get<Note>(`/notes/${id}`, {});
   return res.data;
 };
 
@@ -31,12 +32,12 @@ export const createNote = async (note: {
   content: string;
   tag: string;
 }) => {
-  const res = await api.post<Note>(`/notes`, note, {});
+  const res = await nextServer.post<Note>(`/notes`, note, {});
   return res.data;
 };
 
 export const deleteNote = async (id: string): Promise<Note> => {
-  const res = await api.delete<Note>(`/notes/${id}`, {});
+  const res = await nextServer.delete<Note>(`/notes/${id}`, {});
   return res.data;
 };
 
@@ -45,7 +46,7 @@ export const register = async (userData: {
   username: string;
   password?: string;
 }) => {
-  const res = await api.post<User>(`/auth/register`, userData);
+  const res = await nextServer.post<User>(`/auth/register`, userData);
   return res.data;
 };
 
@@ -53,6 +54,16 @@ export const login = async (credentials: {
   email: string;
   password?: string;
 }) => {
-  const res = await api.post<LoginResponse>(`auth/login`, credentials);
+  const res = await nextServer.post<LoginResponse>(`auth/login`, credentials);
   return res.data;
+};
+
+export const checkSession = async () => {
+  const { data } = await nextServer.get<SessionResponse>(`/auth/session`);
+  return data;
+};
+
+export const getMe = async () => {
+  const { data } = await nextServer.get<User>(`/users/me`);
+  return data;
 };
