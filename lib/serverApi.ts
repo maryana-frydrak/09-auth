@@ -1,9 +1,9 @@
 import { NotesResponse } from "@/types/api";
-import { cookies } from "next/headers";
 import { nextServer } from "./api";
 import { Note } from "@/types/note";
 
 export const checkServerSession = async () => {
+  const { cookies } = await import("next/headers");
   const cookieStore = await cookies();
   const res = await nextServer.get(`/auth/session`, {
     headers: {
@@ -19,6 +19,7 @@ export const fetchNotes = async (
   tag: string | null = null,
   search: string = "",
 ) => {
+  const { cookies } = await import("next/headers");
   const cookieStore = await cookies();
 
   const res = await nextServer.get<NotesResponse>(`/notes`, {
@@ -36,6 +37,7 @@ export const fetchNotes = async (
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
+  const { cookies } = await import("next/headers");
   const cookieStore = await cookies();
 
   const res = await nextServer.get<Note>(`/notes/${id}`, {
@@ -47,6 +49,7 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
 };
 
 export const getMe = async () => {
+  const { cookies } = await import("next/headers");
   const cookieStore = await cookies();
   const res = await nextServer.get(`/users/me`, {
     headers: {
