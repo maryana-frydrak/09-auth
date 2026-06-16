@@ -67,7 +67,11 @@ export default function EditProfilePage() {
             <button type="submit" className={css.saveButton}>
               Save
             </button>
-            <button type="button" className={css.cancelButton}>
+            <button
+              type="button"
+              className={css.cancelButton}
+              onClick={() => router.back()}
+            >
               Cancel
             </button>
           </div>

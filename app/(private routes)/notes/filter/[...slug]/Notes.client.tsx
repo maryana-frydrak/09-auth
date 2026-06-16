@@ -44,13 +44,15 @@ export default function NotesClient({ tag }: NotesClientProps): JSX.Element {
       ) : (
         <p>No notes found.</p>
       )}
-      <Pagination
-        currentPage={page}
-        onPageChange={(selectedItem: { selected: number }) =>
-          setPage(selectedItem.selected + 1)
-        }
-        pageCount={data?.totalPages || 1}
-      />
+      {data?.notes && data.notes.length > 0 && (
+        <Pagination
+          currentPage={page}
+          onPageChange={(selectedItem: { selected: number }) =>
+            setPage(selectedItem.selected + 1)
+          }
+          pageCount={data?.totalPages || 1}
+        />
+      )}
 
       <Link href="/notes/action/create">Add New Note</Link>
     </div>

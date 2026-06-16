@@ -5,7 +5,7 @@ import { logOut } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 
 export const AuthNavigation = () => {
-  const { isAuth, user, clearAuth } = useAuth();
+  const { isAuthenticated, user, clearAuth } = useAuth();
 
   const router = useRouter();
 
@@ -16,11 +16,11 @@ export const AuthNavigation = () => {
       console.error("Помилка виходу", error);
     } finally {
       clearAuth();
-      router.replace(`/login`);
+      router.replace(`/sign-in`);
     }
   };
 
-  return isAuth ? (
+  return isAuthenticated ? (
     <>
       <li className={css.navigationItem}>
         <Link href="/profile" prefetch={false} className={css.navigationLink}>
@@ -29,7 +29,7 @@ export const AuthNavigation = () => {
       </li>
       <li className={css.navigationItem}>
         <>{user?.email}</>
-        <p className={css.userEmail}>User email</p>
+        <> className={css.userEmail}User email</>
         <button onClick={handleLogout} className={css.logoutButton}>
           LogOut
         </button>
@@ -37,11 +37,6 @@ export const AuthNavigation = () => {
     </>
   ) : (
     <>
-      <li className={css.navigationItem}>
-        <Link href="/sign-up" prefetch={false} className={css.navigationLink}>
-          Register
-        </Link>
-      </li>
       <li className={css.navigationItem}>
         <Link href="/sign-in" prefetch={false} className={css.navigationLink}>
           Login

@@ -53,7 +53,7 @@ export const getMe = async () => {
   const cookieStore = await cookies();
   const res = await nextServer.get(`/users/me`, {
     headers: {
-      Cookies: cookieStore.toString(),
+      Cookie: cookieStore.toString(),
     },
   });
   return res.data;

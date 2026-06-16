@@ -4,7 +4,7 @@ import { parse } from "cookie";
 import { checkServerSession } from "./lib/api/serverApi";
 
 const publicRoutes = ["/sign-in", "/sign-up"];
-const privateRoutes = ["/profile"];
+const privateRoutes = ["/profile", "/notes"];
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;

@@ -45,7 +45,7 @@ export const deleteNote = async (id: string): Promise<Note> => {
 export const register = async (userData: {
   email: string;
   username: string;
-  password?: string;
+  password: string;
 }) => {
   const res = await nextServer.post<User>(`/auth/register`, userData);
   return res.data;
@@ -53,9 +53,9 @@ export const register = async (userData: {
 
 export const login = async (credentials: {
   email: string;
-  password?: string;
+  password: string;
 }) => {
-  const res = await nextServer.post<LoginResponse>(`auth/login`, credentials);
+  const res = await nextServer.post<LoginResponse>(`/auth/login`, credentials);
   return res.data;
 };
 
@@ -70,11 +70,11 @@ export const getMe = async () => {
 };
 
 export const logOut = async () => {
-  const { data } = await nextServer.post<SessionResponse>(`auth/logout`);
+  const { data } = await nextServer.post<SessionResponse>(`/auth/logout`);
   return data;
 };
 
 export const updateMe = async (data: EditProfile) => {
-  const res = await nextServer.patch<EditProfile>(`/users/me`, data);
+  const res = await nextServer.patch<User>(`/users/me`, data);
   return res.data;
 };

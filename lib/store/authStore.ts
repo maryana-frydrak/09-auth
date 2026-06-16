@@ -3,18 +3,18 @@ import { User } from "@/types/user";
 
 interface AuthStore {
   user: User | null;
-  isAuth: boolean;
+  isAuthenticated: boolean;
   setAuth: (user: User) => void;
   clearAuth: () => void;
 }
 
 export const useAuth = create<AuthStore>()((set) => ({
   user: null,
-  isAuth: false,
-  setAuth: (user: User) => set({ user, isAuth: true }),
+  isAuthenticated: false,
+  setAuth: (user: User) => set({ user, isAuthenticated: true }),
   clearAuth: () =>
     set({
       user: null,
-      isAuth: false,
+      isAuthenticated: false,
     }),
 }));
