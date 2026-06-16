@@ -4,7 +4,7 @@ import { useAuth } from "@/lib/store/authStore";
 import css from "./EditProfilePage.module.css";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { updateMe } from "@/lib/clientApi";
+import { updateMe } from "@/lib/api/clientApi";
 import Image from "next/image";
 import { User } from "@/types/user";
 

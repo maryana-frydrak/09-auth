@@ -1,4 +1,4 @@
-import { getMe } from "@/lib/serverApi";
+import { getMe } from "@/lib/api/serverApi";
 import { Metadata } from "next";
 import css from "./ProfilePage.module.css";
 import Link from "next/link";

@@ -4,7 +4,7 @@ import {
   QueryClient,
   dehydrate,
 } from "@tanstack/react-query";
-import { fetchNoteById } from "@/lib/serverApi";
+import { fetchNoteById } from "@/lib/api/serverApi";
 
 interface ModalPageProps {
   params: Promise<{ id: string }>;

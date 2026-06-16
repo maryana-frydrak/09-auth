@@ -1,7 +1,7 @@
 import { useAuth } from "@/lib/store/authStore";
 import css from "./AuthNavigation.module.css";
 import Link from "next/link";
-import { logOut } from "@/lib/clientApi";
+import { logOut } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 
 export const AuthNavigation = () => {
@@ -38,7 +38,7 @@ export const AuthNavigation = () => {
   ) : (
     <>
       <li className={css.navigationItem}>
-        <Link href="/register" prefetch={false} className={css.navigationLink}>
+        <Link href="/sign-up" prefetch={false} className={css.navigationLink}>
           Register
         </Link>
       </li>

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import css from "./SignInPage.module.css";
-import { getMe, login } from "@/lib/clientApi";
+import { getMe, login } from "@/lib/api/clientApi";
 import { useAuth } from "@/lib/store/authStore";
 
 interface SignInFormData {
