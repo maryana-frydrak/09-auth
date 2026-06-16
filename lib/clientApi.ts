@@ -4,6 +4,7 @@ import { Note } from "@/types/note";
 import { User } from "@/types/user";
 import { LoginResponse } from "@/types/login";
 import { SessionResponse } from "@/types/session";
+import { EditProfile } from "@/types/editProfile";
 
 export const fetchNotes = async (
   page = 1,
@@ -66,4 +67,14 @@ export const checkSession = async () => {
 export const getMe = async () => {
   const { data } = await nextServer.get<User>(`/users/me`);
   return data;
+};
+
+export const logOut = async () => {
+  const { data } = await nextServer.post<SessionResponse>(`auth/logout`);
+  return data;
+};
+
+export const updateMe = async (data: EditProfile) => {
+  const res = await nextServer.patch<EditProfile>(`/users/me`, data);
+  return res.data;
 };

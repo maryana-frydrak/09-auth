@@ -3,7 +3,8 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import css from "./SignInPage.module.css";
-import { login } from "@/lib/clientApi";
+import { getMe, login } from "@/lib/clientApi";
+import { useAuth } from "@/lib/store/authStore";
 
 interface SignInFormData {
   email: string;
@@ -13,6 +14,8 @@ interface SignInFormData {
 export default function SignInPage() {
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
+
+  const setAuth = useAuth((state) => state.setAuth);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +29,10 @@ export default function SignInPage() {
 
     try {
       await login(data);
+
+      const userData = await getMe();
+      setAuth(userData);
+
       router.push("/profile");
     } catch (err: unknown) {
       if (err instanceof Error) {
