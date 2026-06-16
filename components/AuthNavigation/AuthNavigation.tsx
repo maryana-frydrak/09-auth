@@ -28,10 +28,9 @@ export const AuthNavigation = () => {
         </Link>
       </li>
       <li className={css.navigationItem}>
-        <>{user?.email}</>
-        <> className={css.userEmail}User email</>
+        <span className={css.userEmail}>{user?.email}</span>
         <button onClick={handleLogout} className={css.logoutButton}>
-          LogOut
+          Logout
         </button>
       </li>
     </>
