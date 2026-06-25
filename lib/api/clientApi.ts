@@ -44,7 +44,6 @@ export const deleteNote = async (id: string): Promise<Note> => {
 
 export const register = async (userData: {
   email: string;
-  username: string;
   password: string;
 }) => {
   const res = await nextServer.post<User>(`/auth/register`, userData);

@@ -19,10 +19,9 @@ export default function SignUpPage() {
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
-    const username = email.split("@")[0];
 
     try {
-      const userData = await register({ email, username, password });
+      const userData = await register({ email, password });
 
       setAuth(userData);
 
